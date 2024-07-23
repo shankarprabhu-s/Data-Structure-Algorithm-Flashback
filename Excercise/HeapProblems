@@ -1,0 +1,16 @@
+public static int findKthSmallest(int[] nums, int k) {
+    // Create a max-heap using PriorityQueue with a custom comparator
+    PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+    // Iterate through the array
+    for (int num : nums) {
+        // Add each number to the max-heap
+        maxHeap.add(num);
+        // If the size of the max-heap exceeds k, remove the root element (largest element)
+        if (maxHeap.size() > k) {
+            maxHeap.poll();
+        }
+    }
+
+    // The root element of the max-heap is the k-th smallest element
+    return maxHeap.poll();
+}
